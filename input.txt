@@ -1,0 +1,14 @@
+# Node Count n
+5
+# Edge Count m
+8
+# Edges -> |Edges| = m
+# Origin Destiny Weight
+1 2 4
+1 2 3
+1 5 6
+1 2 5
+2 1 7
+2 3 9
+3 4 2
+5 2 1
