@@ -1,3 +1,4 @@
+from posixpath import split
 from graph import Graph
 from sudoku import Sudoku
 
@@ -65,6 +66,26 @@ class FileReader:
         return newGraph
     
     # TODO
-    def createSudoku(self):
-        return Sudoku(4)
-        
+    def createSudoku(self, file):
+        count = 0
+        with open(file) as f:
+            lines = f.readlines()
+            for line in lines:
+                if line.startswith('#'):
+                    pass
+                else:
+                    if count == 0:
+                        size = int(line)
+                        count += 1
+                    elif count == 1:
+                        restrictions = int(line)
+                        count += 1
+                        sudoku = Sudoku(size, restrictions)
+                    elif count > 1:
+                        split = line.split(' ')
+                        x = int(split[0])
+                        y = int(split[1])
+                        n = int(split[2])
+                        sudoku.addRestriction(x, y, n)
+                        pass
+        return sudoku

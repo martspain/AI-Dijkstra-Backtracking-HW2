@@ -24,24 +24,26 @@ if showBanner:
     print('Inteligencia Artificial - Sección 20')
     print('Autores:')
     print('     Martín España   Carné: 19258')
+    print('     Diego Arredondo   Carné: 19422')
     print('Fecha: 24-02-2022')
     print('Versión: 1.0')
     print('----------------------------------- \n')
 
+#PARA EL GRAFO
 # Read input file for graph
 rg = FileReader('input.txt')
-
 # Create a directed graph from file
 g = rg.createGraph('Graph One', True)
-
 # Show current graph
 g.showRawGraph()
 
+#PARA EL SUDOKU
 # Read input file for sudoku
-rs = FileReader('input.txt')
-
+rs = FileReader('sudoku6.txt')
 # Create a sudoku board
-s = rs.createSudoku()
+s = rs.createSudoku('sudoku9.txt')
+# Show current sudoku
+s.showRawSudoku()
 
 # Write output to the corresponding output file
 w = FileWriter('output.txt')
