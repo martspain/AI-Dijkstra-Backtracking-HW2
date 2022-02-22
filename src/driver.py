@@ -39,9 +39,9 @@ g.showRawGraph()
 
 #PARA EL SUDOKU
 # Read input file for sudoku
-rs = FileReader('sudoku6.txt')
+rs = FileReader('sudoku4.txt')
 # Create a sudoku board
-s = rs.createSudoku('sudoku9.txt')
+s = rs.createSudoku('sudoku4.txt')
 # Show current sudoku
 s.showRawSudoku()
 

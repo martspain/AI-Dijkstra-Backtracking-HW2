@@ -20,6 +20,7 @@ class Sudoku:
         self.board[x][y] = n
 
     def showRawSudoku(self):
+        print("Sudoku Board:")
         for i in self.board:
             print(i)
 
