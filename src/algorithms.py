@@ -7,6 +7,3 @@ def dijkstra(G, startNode, endNode):
     
     return result
 
-# TODO
-def backtracking(S):
-    return 'Backtracking'
