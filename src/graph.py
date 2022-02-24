@@ -1,6 +1,6 @@
 from vertex import Vertex
 from edge import Edge
-#from algorithms import dijkstra
+# from algorithms import dijkstra
 
 class Graph:
     def __init__(self, name, directional = False):
