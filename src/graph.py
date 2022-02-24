@@ -1,6 +1,6 @@
 from vertex import Vertex
 from edge import Edge
-from algorithms import dijkstra
+#from algorithms import dijkstra
 
 class Graph:
     def __init__(self, name, directional = False):
@@ -74,8 +74,8 @@ class Graph:
         return temp
 
     # Gets the shortest path using Dijkstra algorithm
-    def getShortestPath(self, start, end):
-        return dijkstra(self, start, end)
+   # def getShortestPath(self, start, end):
+    #    return dijkstra(self, start, end)
 
     # Return edges
     def getEdges(self):

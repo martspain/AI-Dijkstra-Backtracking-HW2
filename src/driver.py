@@ -9,6 +9,7 @@ Autores:
 
 from fileReader import FileReader
 from fileWriter import FileWriter
+from algorithms import dijkstra
 
 # TODO Change this to True when program is finished
 showBanner = False
@@ -46,6 +47,8 @@ while opcionMenu != 3:
         g = rg.createGraph('Graph One', True)
         # Show current graph
         g.showRawGraph()
+        dijkstra(g, 1, 7)
+        #g.getShortestPath(1,7)
 
         # Write output to the corresponding output file
         w = FileWriter('output.txt')
