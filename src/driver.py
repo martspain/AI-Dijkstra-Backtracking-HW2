@@ -9,7 +9,9 @@ Autores:
 
 from fileReader import FileReader
 from fileWriter import FileWriter
-from algorithms import dijkstra
+from algorithms import dijkstra, solveSudoku
+import algorithms as alg
+from pprint import pprint
 
 # TODO Change this to True when program is finished
 showBanner = False
@@ -69,8 +71,18 @@ while opcionMenu != 3:
             s = rs.createSudoku('sudoku4.txt')
             # Show current sudoku
             s.showRawSudoku()
-            # Solve sudoku
-            s.solveSudoku()
+            puzzle = s.getPuzzle()
+            print('\n-----------------------')
+            # solved = alg.solveSudoku(puzzle)
+            print('still working on a solution for the 4x4 sudoku')
+            # if(solved == True):
+            #     print("Solved Sudoku")
+            #     pprint(puzzle)
+            #     print('\n-----------------------')
+                
+            # else:
+            #     print("Unsolvable Sudoku")
+            
 
         if opcionS == 2:
             # Read input file for sudoku
@@ -79,8 +91,16 @@ while opcionMenu != 3:
             s = rs.createSudoku('sudoku6.txt')
             # Show current sudoku
             s.showRawSudoku()
-            # Solve sudoku
-            s.solveSudoku()
+            puzzle = s.getPuzzle()
+            print('\n-----------------------')
+            solved = alg.solveSudoku(puzzle)
+            if(solved == True):
+                print("Solved Sudoku")
+                pprint(puzzle)
+                print('\n-----------------------')
+                
+            else:
+                print("Unsolvable Sudoku")
 
         if opcionS == 3:
             # Read input file for sudoku
@@ -89,8 +109,16 @@ while opcionMenu != 3:
             s = rs.createSudoku('sudoku9.txt')
             # Show current sudoku
             s.showRawSudoku()
-            # Solve sudoku
-            s.solveSudoku()
+            puzzle = s.getPuzzle()
+            print('\n-----------------------')
+            solved = alg.solveSudoku(puzzle)
+            if(solved == True):
+                print("Solved Sudoku")
+                pprint(puzzle)
+                print('\n-----------------------')
+                
+            else:
+                print("Unsolvable Sudoku")
 
         else: 
             print('\nSaliendo del sudoku...')
