@@ -1,6 +1,7 @@
 # Dijkstra algorithm implementation
 from vertex import Vertex
 from graph import Graph
+import pprint
 
 def dijkstra(G, startNode, endNode):
     infinity = 10000000000
@@ -28,12 +29,15 @@ def dijkstra(G, startNode, endNode):
         unseen[current] = True
 
         for i in range(len(G.nodes[current].reachable)): 
-            print('this is the reachable ====>',G.nodes[current].reachable)
+            print('this is the reachable ====>')
+            for l in G.nodes[current].reachable:
+                pprint.pprint(vars(l))
             w = G.nodes[current].reachable[i]  #Graph.getNodeEdges(G, current) G.nodes[current].reachable[i]
             print('this is w ===>', w)
+            pprint.pprint(vars(w))
             x = Graph.getNodeEdges(G, w)
             print('this is the node edges =====>',x)
-            for edge in range(len(x)):
+            for edge in x:
                 v = edge.origin.value
             print('this is origin ====>',v)
             if (unseen[v]):
@@ -41,10 +45,10 @@ def dijkstra(G, startNode, endNode):
    
             #inserting into visited vertex    
             sett.add(v)
-            for i in range(len(x)):
-                u = i.destination
-            print('this is destination ====>', u)
-            alt = distance[current] + u
+            for i in x:
+                u = i.destiny
+            pprint.pprint(vars(u))
+            alt = distance[current] + u.value
    
             # This condition check if the distance is correct and then updated it
             if (alt < distance[v]):      
@@ -64,6 +68,7 @@ def dijkstra(G, startNode, endNode):
                 minDistance = distance[a]
                 index = a;          
         current = index;  
+        print(distance)
     return distance
 
 
