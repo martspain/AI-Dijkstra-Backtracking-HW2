@@ -59,7 +59,7 @@ def dijkstra(G, startNode, endNode):
     while startNode not in path:
         path.append(predecessors[path[-1]])
     
-    # return the path in order start -> end, and it's cost
+    # return the path in order start -> end, and it's weight
     return path[::-1], distances[endNode]
 
 
