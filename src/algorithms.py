@@ -63,6 +63,3 @@ def dijkstra(G, startNode, endNode):
     return path[::-1], distances[endNode]
 
 
-# TODO
-def backtracking(S):
-    return 'Backtracking'
