@@ -1,9 +1,13 @@
 # Dijkstra algorithm implementation
-from re import U
-from vertex import Vertex
-from graph import Graph
 import heapq
 
+'''
+Sources seen for the implementation of this Dijkstra's algorithm.:
+Pseudocode from this page
+https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+''' 
+
+# This Dijkstra Algorithm finds the shortest path for a directed graph given the graph itself, a start node and an end node.
 def dijkstra(g, startNode, endNode):
     infinity = 10000000000
 
@@ -15,10 +19,7 @@ def dijkstra(g, startNode, endNode):
     q[startNode -1] = (0, startNode)
     distances[startNode] = 0
     heapq.heapify(q)
-   
-   
-    # Set of vertices that has a parent marked as visited
-    
+       
     while len(q):
         # Mark current as visited
         d,  current = heapq.heappop(q)
@@ -37,7 +38,7 @@ def dijkstra(g, startNode, endNode):
                     while parent:
                         result.append(parent)
                         parent = path[parent]
-                    return result, distances[endNode]
+                    return result[::-1], distances[endNode]
 
 
 

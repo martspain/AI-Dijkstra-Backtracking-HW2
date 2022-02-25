@@ -73,9 +73,10 @@ while opcionMenu != 3:
         # Read input file for graph
         g = Graph()
         g.read_graph("input.txt")
+        print("Graph")
         g.print()
         path = dijkstra(g, 1, 5)
-        print(path)
+        print("Dijkstra shortest path (nodes, total weight):", path)
         #g.getShortestPath(1,7)
 
         # Write output to the corresponding output file
