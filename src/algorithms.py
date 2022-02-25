@@ -1,75 +1,44 @@
 # Dijkstra algorithm implementation
+from re import U
 from vertex import Vertex
 from graph import Graph
-import pprint
+import heapq
 
-def dijkstra(G, startNode, endNode):
+def dijkstra(g, startNode, endNode):
     infinity = 10000000000
 
-    #Create the path
-    path = [0 for i in range(len(G.nodes))]
-
     # Stores distance of each vertex from source vertex
-    distance = [infinity for i in range(len(G.nodes))]
+    q = [ (infinity, node)  for node in g.vertices]
+    distances = {node: infinity for node in g.vertices}
    
-    # This list shows wheter the vertex is visited or not.
-    unseen = [False for i in range(len(G.nodes))]
-     
-    for i in range(len(G.nodes)):       
-        path[i] = -1
-    distance[startNode] = 0
-    path[startNode] = -1
-    current = startNode
+    path = { v : None for v in g.vertices }
+    q[startNode -1] = (0, startNode)
+    distances[startNode] = 0
+    heapq.heapify(q)
+   
    
     # Set of vertices that has a parent marked as visited
-    sett = set()    
-    while (True):
-           
+    
+    while len(q):
         # Mark current as visited
-        unseen[current] = True
+        d,  current = heapq.heappop(q)
+       
+        for nbr in g.vertices[current]:
+            v, w = nbr[0], nbr[1]
+           
+            dist = d + w
+            if dist < distances[v]:
+                distances[v] = dist
+                path[v] = current
+                heapq.heappush( q, (distances[v] , v) )
+                if v == endNode:
+                    result = [ endNode ]
+                    parent = path[v]
+                    while parent:
+                        result.append(parent)
+                        parent = path[parent]
+                    return result, distances[endNode]
 
-        for i in range(len(G.nodes[current].reachable)): 
-            print('this is the reachable ====>')
-            for l in G.nodes[current].reachable:
-                pprint.pprint(vars(l))
-            w = G.nodes[current].reachable[i]  #Graph.getNodeEdges(G, current) G.nodes[current].reachable[i]
-            print('this is w ===>', w)
-            pprint.pprint(vars(w))
-            x = Graph.getNodeEdges(G, w)
-            print('this is the node edges =====>',x)
-            for edge in x:
-                v = edge.origin.value
-            print('this is origin ====>',v)
-            if (unseen[v]):
-                continue
-   
-            #inserting into visited vertex    
-            sett.add(v)
-            for i in x:
-                u = i.destiny
-            pprint.pprint(vars(u))
-            alt = distance[current] + u.value
-   
-            # This condition check if the distance is correct and then updated it
-            if (alt < distance[v]):      
-                distance[v] = alt
-                path[v] = current;       
-        if current in sett:           
-            sett.remove(current);       
-        if (len(sett) == 0):
-            break
-   
-        minDistance = infinity
-        index = 0
-   
-        # this loop updates the distance of the vertices in the graph
-        for a in sett:       
-            if (distance[a] < minDistance):          
-                minDistance = distance[a]
-                index = a;          
-        current = index;  
-        print(distance)
-    return distance
 
 
 #backtracking implementation 
