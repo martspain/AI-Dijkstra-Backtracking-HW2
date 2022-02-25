@@ -13,6 +13,33 @@ from algorithms import dijkstra, solveSudoku
 import algorithms as alg
 from pprint import pprint
 
+
+class Graph:
+    def __init__(self):
+        self.vertices = {}
+       
+
+    def read_graph(self, filename):
+        with open(filename) as fp:
+            for line in fp:
+                line = line.strip()
+                if line :
+                    v, u, w = line.split(" ")
+                    edges = self.vertices.get(int(v))     
+                    if not edges:
+                        edges = []
+                        self.vertices[int(v)] = edges
+                    edges.append( (int(u),int(w)) )
+
+                    if int(u) not in self.vertices:
+                        self.vertices[int(u)] = []
+
+    def print(self):
+        for node, edges in self.vertices.items():
+            for edge in edges:
+                print(node, "=>", edge[0] , " cost ", edge[1])
+
+
 # TODO Change this to True when program is finished
 showBanner = False
 if showBanner:
@@ -44,12 +71,11 @@ while opcionMenu != 3:
     if opcionMenu == 1:
         #PARA EL GRAFO
         # Read input file for graph
-        rg = FileReader('input.txt')
-        # Create a directed graph from file
-        g = rg.createGraph('Graph One', True)
-        # Show current graph
-        g.showRawGraph()
-        dijkstra(g, 1, 7)
+        g = Graph()
+        g.read_graph("input.txt")
+        g.print()
+        path = dijkstra(g, 1, 5)
+        print(path)
         #g.getShortestPath(1,7)
 
         # Write output to the corresponding output file
