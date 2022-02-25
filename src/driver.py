@@ -37,7 +37,7 @@ class Graph:
     def print(self):
         for node, edges in self.vertices.items():
             for edge in edges:
-                print(node, "=>", edge[0] , " cost ", edge[1])
+                print(node, "=>", edge[0] , " peso ", edge[1])
 
 
 # TODO Change this to True when program is finished
@@ -75,8 +75,10 @@ while opcionMenu != 3:
         g.read_graph("input.txt")
         print("Graph")
         g.print()
-        path = dijkstra(g, 1, 5)
-        print("Dijkstra shortest path (nodes, total weight):", path)
+        startNode = int(input('Ingrese el nodo donde quiere comenzar el recorrido: '))
+        endNode = int(input('Ingrese el nodo donde quiere terminar el recorrido: '))
+        path = dijkstra(g, startNode, endNode)
+        print("Dijkstra camino mas corto (nodos, peso total):", path)
         #g.getShortestPath(1,7)
 
         # Write output to the corresponding output file
