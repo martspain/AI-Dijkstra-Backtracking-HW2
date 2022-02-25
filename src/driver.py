@@ -100,15 +100,15 @@ while opcionMenu != 3:
             s.showRawSudoku()
             puzzle = s.getPuzzle()
             print('\n-----------------------')
-            # solved = alg.solveSudoku(puzzle)
-            print('still working on a solution for the 4x4 sudoku')
-            # if(solved == True):
-            #     print("Solved Sudoku")
-            #     pprint(puzzle)
-            #     print('\n-----------------------')
+            solved = alg.solveSudoku(puzzle, 4)
+            if(solved == True):
+                print("Solved Sudoku")
+                for n in puzzle:
+                    pprint(n)
+                print('\n-----------------------')
                 
-            # else:
-            #     print("Unsolvable Sudoku")
+            else:
+                print("Unsolvable Sudoku")
             
 
         if opcionS == 2:
@@ -120,7 +120,7 @@ while opcionMenu != 3:
             s.showRawSudoku()
             puzzle = s.getPuzzle()
             print('\n-----------------------')
-            solved = alg.solveSudoku(puzzle)
+            solved = alg.solveSudoku(puzzle, 6)
             if(solved == True):
                 print("Solved Sudoku")
                 pprint(puzzle)
@@ -138,7 +138,7 @@ while opcionMenu != 3:
             s.showRawSudoku()
             puzzle = s.getPuzzle()
             print('\n-----------------------')
-            solved = alg.solveSudoku(puzzle)
+            solved = alg.solveSudoku(puzzle, 9)
             if(solved == True):
                 print("Solved Sudoku")
                 pprint(puzzle)

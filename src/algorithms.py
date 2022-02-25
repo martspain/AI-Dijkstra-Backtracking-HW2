@@ -73,12 +73,12 @@ def usedInCol(arr, col, num):
             return False
     return True
     
-def usedInBox(arr, row, col, num):
-    r=(row//3)*3+1
-    c=(col//3)*3+1
-    for i in [-1,0,1]:
-        for j in [-1,0,1]:
-            if arr[r+i][c+j]==num:
+def usedInBox(arr, row, col, num, box):
+    startRow = row - row % box
+    startCol = col - col % box
+    for i in range(box):
+        for j in range(box):
+            if arr[i + startRow][j + startCol] == num:
                 return False
     return True
 
@@ -89,20 +89,20 @@ def findUnassigned(arr):
                 return i, j
     return -1, -1
 
-def checkLocationIsSafe(arr, row, col, num):
-    global squareSize
-    return not usedInRow(arr, row, num) and not usedInCol(arr, col, num) and not usedInBox(arr, row - row % squareSize, col - col % squareSize, num)
-
-def solveSudoku(arr):
+def solveSudoku(arr, val):
+    if (val == 4 or val == 6):
+        box = 2
+    else:
+        box = 3
     i, j = findUnassigned(arr)
     if(i == -1 and j == -1):
         return True
     
-    for num in range(1,10):
-        if usedInRow(arr, i, num) and usedInCol(arr, j, num) and usedInBox(arr, i, j, num):
+    for num in range(1, val+1):
+        if usedInRow(arr, i, num) and usedInCol(arr, j, num) and usedInBox(arr, i, j, num, box):
             arr[i][j] = num
 
-            if solveSudoku(arr):
+            if solveSudoku(arr, val):
                 return True
 
             arr[i][j] = 0
